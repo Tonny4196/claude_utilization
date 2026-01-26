@@ -6,6 +6,23 @@ Task toolで呼び出せる専門サブエージェントの定義を格納す�
 
 エージェントは特定の役割やスキルに特化したClaude Codeのサブプロセスです。メインのClaude Codeセッションから`Task`ツールを使って呼び出すことができます。
 
+**Current Version**: 2.0.0
+**Last Updated**: 2026-01-26
+**Total Agents**: 9
+
+## Version History
+
+### Version 2.0.0 (2026-01-26)
+- Added tool optimizations (Write/Edit/WebSearch)
+- Added agent dependencies documentation
+- Added quality checklists for all agents
+- Added version management
+- Added devops-engineer agent
+- Changed tech-lead permissionMode to acceptEdits
+
+### Version 1.0.0 (2026-01-25)
+- Initial release with 8 core agents
+
 ## 現在利用可能なエージェント
 
 ### 設計フェーズ用エージェント
