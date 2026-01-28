@@ -226,59 +226,58 @@ describe('機能名', () => {
 - ページネーション実装
 ```
 
-## StudyMate用の推奨ルール
+## プロジェクト固有ルールの例
 
-### studymate-core-principles.md
+プロジェクトのコアプリンシプルや固有の制約をルールとして定義できます。
+
+### core-principles.md（例）
 ```markdown
-# StudyMate コアプリンシプル
+# [Your Project] コアプリンシプル
 
 ## プロダクト哲学
 
-### 1. 「今日もやった自分」を静かに肯定
-- 評価的な言葉を使わない
-- 比較を促さない
-- 小さな進捗も肯定する
+### 1. [Core Principle 1]
+- [Detail 1]
+- [Detail 2]
+- [Detail 3]
 
-### 2. サボった日を責めない
-- 未記録日に否定的なメッセージを表示しない
-- 連続記録が途切れても責めない
-- 「空白」を許容するUI
+### 2. [Core Principle 2]
+- [Detail 1]
+- [Detail 2]
+- [Detail 3]
 
-### 3. 明日も机に戻りやすくする
-- 記録完了まで15秒以内
-- 1ステップで完了
-- 再開のハードルを極端に下げる
+### 3. [Core Principle 3]
+- [Detail 1]
+- [Detail 2]
+- [Detail 3]
 
 ## 技術的制約
 
 ### 非機能要件（必須）
-- 記録完了: 最大15秒
-- アプリ起動: 3秒以内
-- アニメーション: 60fps
-- オフライン対応: 必須
-- クラウド同期: 必須
+- [Requirement 1]: [Target/Description]
+- [Requirement 2]: [Target/Description]
+- [Requirement 3]: [Target/Description]
 
 ### UI/UX原則
-- 継続のしやすさ > 情報の正確さ
-- 気持ちの軽さ > 記録の網羅性
-- 分かりやすさ > 自由度
+- [Principle 1] > [Principle 2]
+- [Principle 3] > [Principle 4]
+- [Principle 5] > [Principle 6]
 
 ## コード実装時の注意
 
-### タイマー機能
-- 精度: ±1秒/時間
-- バックグラウンド継続: 必須
-- STOP = 自動保存（確認ダイアログなし）
+### [Feature 1]
+- [Implementation detail 1]
+- [Implementation detail 2]
+- [Implementation detail 3]
 
-### データ同期
-- オフラインファースト設計
-- 競合解決は最終更新を優先
-- ユーザーにデータ喪失を感じさせない
+### [Feature 2]
+- [Implementation detail 1]
+- [Implementation detail 2]
 
 ### エラーハンドリング
-- ユーザーに分かりやすいメッセージ
-- 技術的詳細は隠す
-- 次のアクションを明示
+- [Error handling principle 1]
+- [Error handling principle 2]
+- [Error handling principle 3]
 ```
 
 ## カスタムルールの作成
