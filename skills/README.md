@@ -212,7 +212,13 @@ Use the deploy-to-staging skill to deploy the latest build
 
 ## 現在の状態
 
-このディレクトリは現在空です。プロジェクトのニーズに応じてカスタムスキルを追加できます。
+以下のスキルが利用可能です：
+
+### Git/GitHub操作系
+
+- **commit-and-push**: 作業完了後にGitHubにcommit/pushを行う。Protectedブランチ（develop, main, production）で作業中の場合は自動的に作業ブランチを作成
+
+プロジェクトのニーズに応じてさらにカスタムスキルを追加できます。
 
 ### 推奨される最初のスキル
 
