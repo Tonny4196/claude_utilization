@@ -1,6 +1,8 @@
 # Claude Utilization Framework
 
-プロジェクト間で再利用可能なClaude Code設定を管理するための統一フレームワーク。
+**プロジェクトに特化した開発を加速するClaude Code設定テンプレート**
+
+これは、あらゆるプロジェクトで利用できる汎用的なClaude Code設定のテンプレートリポジトリです。各プロジェクトの`.claude/`ディレクトリにコピーして、プロジェクト固有の情報を追記することで、Claude Codeをプロジェクトに最適化できます。
 
 ## ディレクトリ構造
 
@@ -15,6 +17,24 @@ claude_utilization/
 ├── plugins/          # プラグイン情報
 └── examples/         # 設定例
 ```
+
+## 特徴
+
+### 汎用的なエージェントテンプレート
+
+すべてのエージェント（agents/*.md）は、プロジェクトに依存しない汎用的なテンプレートです。各エージェントファイル内の `<!-- ✏️ EDIT THIS SECTION -->` マーカーで示された箇所に、プロジェクト固有の情報を追記することで、あなたのプロジェクトに最適化されたエージェントになります。
+
+**編集が必要なセクション例:**
+- Project Overview: プロジェクト名、概要、対象ユーザー、プラットフォーム、MVP機能
+- Reference Documents: プロジェクトのドキュメントへのパス
+- Key Constraints & Priorities: プロジェクトの制約と優先事項
+- Key Implementation Areas: プロジェクト固有の実装領域（API、画面、エンティティなど）
+
+### 柔軟なカスタマイズ
+
+- 各セクションに具体例がHTML コメントで含まれているため、参考にしながら編集できます
+- プロジェクトに不要なセクションは削除可能
+- 必要に応じて新しいセクションを追加可能
 
 ## セットアップ
 
@@ -81,16 +101,19 @@ Claude Codeプラグイン情報。
 
 ## 利用可能なエージェント
 
-現在利用可能な専門エージェント：
+以下の専門エージェントテンプレートが利用可能です（全てv3.0.0、プロジェクト非依存）：
 
-- **tech-lead**: 技術選定とシステム設計
-- **ui-ux-designer**: UI/UXデザインとユーザビリティ改善
-- **data-modeler**: データベース設計とクエリ最適化
-- **project-manager**: プロジェクト計画とタスク管理
-- **backend-dev**: バックエンド実装とAPI開発
-- **frontend-dev**: フロントエンド実装とUI開発
-- **qa-tester**: テスト戦略と品質保証
-- **doc-writer**: ドキュメント作成と技術文書
+- **tech-lead**: 技術選定とシステム設計（技術スタック、アーキテクチャ、API設計、セキュリティ）
+- **ui-ux-designer**: UI/UXデザインとユーザビリティ改善（ワイヤーフレーム、画面遷移、デザインシステム）
+- **data-modeler**: データベース設計とクエリ最適化（スキーマ設計、ER図、マイグレーション）
+- **project-manager**: プロジェクト計画とタスク管理（タスク分解、マイルストーン、リスク管理）
+- **backend-dev**: バックエンド実装とAPI開発（サーバーロジック、データベース統合、認証）
+- **frontend-dev**: フロントエンド/モバイル実装（UI コンポーネント、状態管理、オフライン対応）
+- **qa-tester**: テスト戦略と品質保証（ユニットテスト、統合テスト、E2Eテスト、パフォーマンス）
+- **doc-writer**: ドキュメント作成と技術文書（ユーザーガイド、API ドキュメント、セットアップ）
+- **devops-engineer**: インフラとデプロイメント（CI/CD、コンテナ化、モニタリング）
+
+各エージェントはプロジェクト固有の情報を追記することで、あなたのプロジェクトに最適化されます。
 
 ## 更新
 
@@ -102,9 +125,38 @@ bash ~/workspace/claude_utilization/setup.sh
 
 ## 新規プロジェクトへの展開
 
+### ステップ1: テンプレートをコピー
+
 1. 新規プロジェクトのルートディレクトリに移動
-2. セットアップスクリプトを実行
-3. 必要に応じて`.claude/`配下の設定をプロジェクト固有にカスタマイズ
+2. セットアップスクリプトを実行して`.claude/`ディレクトリを作成
+
+```bash
+cd /path/to/your/project
+bash ~/workspace/claude_utilization/setup.sh
+```
+
+### ステップ2: プロジェクト固有情報を追記 ⚠️ 重要
+
+コピーしたエージェントファイル（`.claude/agents/*.md`）を開き、`<!-- ✏️ EDIT THIS SECTION -->` マーカーがある箇所にプロジェクト固有の情報を追記してください。
+
+**必須編集項目:**
+- **Project Overview**: プロジェクト名、概要、ターゲット、プラットフォーム、MVP機能
+- **Reference Documents**: プロジェクトの要件定義書や設計書へのパス
+
+**推奨編集項目:**
+- **Key Constraints & Priorities**: プロジェクトの制約や優先事項
+- **Key Implementation Areas**: プロジェクト固有のAPI、画面、エンティティなど
+
+各セクションにはHTML コメント内に記載例があるため、参考にしながら編集できます。
+
+### ステップ3: Claude Codeで利用開始
+
+プロジェクト情報を追記したら、Claude Codeを起動してエージェントを利用できます：
+
+```
+Use the tech-lead agent to design the system architecture for this project
+Have the ui-ux-designer agent create wireframes based on our requirements
+```
 
 ## ライセンス
 
