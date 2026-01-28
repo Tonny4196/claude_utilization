@@ -17,56 +17,56 @@ Ask questions **one at a time** in a conversational manner. Wait for each answer
 Collect the following information:
 
 #### 1. Project Overview (Required for ALL agents)
-- **Project Name**: What is the name of your project?
-- **Brief Description**: Describe your project in 1-2 sentences (core concept and value proposition)
-- **Target Audience**: Who are your primary users? (e.g., "Small dev teams (10-50 members)", "Students aged 15-18")
-- **Platform**: What platform(s) are you targeting? (e.g., "Web application", "iOS/Android mobile app", "Desktop app", "CLI tool")
-- **MVP Features**: List 3-5 core MVP features (comma-separated)
+- **Project Name**: プロジェクト名を教えてください
+- **Brief Description**: プロジェクトを1〜2文で説明してください（コアコンセプトと価値提案）
+- **Target Audience**: 主なユーザーは誰ですか？（例: 「小規模開発チーム（10〜50人）」「15〜18歳の学生」）
+- **Platform**: どのプラットフォームをターゲットにしていますか？（例: 「Webアプリケーション」「iOS/Androidモバイルアプリ」「デスクトップアプリ」「CLIツール」）
+- **MVP Features**: 3〜5個のコアMVP機能をカンマ区切りでリストアップしてください
 
 #### 2. Reference Documents (For: tech-lead, data-modeler, project-manager, qa-tester, ui-ux-designer)
-- **Requirements Document Path**: Path to your requirements document (or "N/A" if not available)
-- **Product Concept Path**: Path to your product concept document (or "N/A")
-- **Technical Specifications Path**: Path to your technical specifications (or "N/A")
-- **Other Document Paths**: Any other important documents? (comma-separated paths, or "N/A")
+- **Requirements Document Path**: 要件定義書のパスを教えてください（ない場合は「N/A」）
+- **Product Concept Path**: プロダクトコンセプト文書のパスを教えてください（ない場合は「N/A」）
+- **Technical Specifications Path**: 技術仕様書のパスを教えてください（ない場合は「N/A」）
+- **Other Document Paths**: その他の重要なドキュメントはありますか？（カンマ区切りのパス、またはなければ「N/A」）
 
 #### 3. Key Constraints & Priorities (For: tech-lead)
-- **Non-Functional Requirements**: List key non-functional requirements (e.g., "Page load time: <2s", "API response: <200ms", "Uptime: 99.9%")
-- **Technical Priorities**: List 5 technical priorities in order (1=highest)
-- **Product Philosophy**: List 3-5 product principles (e.g., "User experience > Feature richness", "Security > Convenience")
+- **Non-Functional Requirements**: 主要な非機能要件をリストアップしてください（例: 「ページ読み込み時間: <2秒」「APIレスポンス: <200ms」「稼働率: 99.9%」）
+- **Technical Priorities**: 5つの技術的優先順位を順番に並べてください（1=最高）
+- **Product Philosophy**: 3〜5個のプロダクト原則をリストアップしてください（例: 「ユーザー体験 > 機能の豊富さ」「セキュリティ > 利便性」）
 
 #### 4. API Endpoints (For: backend-dev)
-- **Key API Endpoints**: List main API endpoint categories (e.g., "User management", "Task CRUD", "Team collaboration", "Notifications")
+- **Key API Endpoints**: 主要なAPIエンドポイントのカテゴリをリストアップしてください（例: 「ユーザー管理」「タスクCRUD」「チームコラボレーション」「通知」）
 
 #### 5. Performance Targets (For: backend-dev, frontend-dev)
-- **Backend Performance**: API response time target (e.g., "<200ms p95")
-- **Frontend Performance**: Page load time target (e.g., "<2 seconds initial load")
-- **Concurrent Users**: How many concurrent users should the system support?
+- **Backend Performance**: APIレスポンスタイムの目標値を教えてください（例: 「<200ms p95」）
+- **Frontend Performance**: ページ読み込み時間の目標値を教えてください（例: 「<2秒 初期ロード」）
+- **Concurrent Users**: システムは何人の同時ユーザーをサポートすべきですか？
 
 #### 6. Screens/Features (For: frontend-dev, ui-ux-designer)
-- **Main Screens**: List main screens/pages (e.g., "Dashboard", "Login/Signup", "Profile", "Settings")
-- **Screen Details**: For each screen, list 2-3 key components or features
+- **Main Screens**: 主要な画面/ページをリストアップしてください（例: 「ダッシュボード」「ログイン/サインアップ」「プロフィール」「設定」）
+- **Screen Details**: 各画面について、2〜3個の主要コンポーネントまたは機能をリストアップしてください
 
 #### 7. Core Features (For: frontend-dev)
-- **Core Features List**: List the core features to implement (can overlap with MVP features but more detailed)
+- **Core Features List**: 実装するコア機能をリストアップしてください（MVP機能と重複してもよいですが、より詳細に）
 
 #### 8. Entities (For: data-modeler)
-- **Main Entities**: List main database entities (e.g., "User", "Task", "Team", "Comment") - User is usually included by default
-- **Entity Attributes**: For each entity (except User), list 3-5 key attributes
+- **Main Entities**: 主要なデータベースエンティティをリストアップしてください（例: 「User」「Task」「Team」「Comment」）※Userは通常デフォルトで含まれます
+- **Entity Attributes**: 各エンティティ（User以外）について、3〜5個の主要な属性をリストアップしてください
 
 #### 9. Development Phases (For: project-manager)
-- **Phase 1 Goal**: What is the goal of Phase 1 (MVP)?
-- **Phase 1 Features**: List Phase 1 features (can reference MVP features)
-- **Phase 2 Goal**: What is the goal of Phase 2? (or "N/A" if not defined)
-- **Phase 2 Features**: List Phase 2 features (or "N/A")
-- **Phase 3 Goal**: What is the goal of Phase 3? (or "N/A")
-- **Phase 3 Features**: List Phase 3 features (or "N/A")
+- **Phase 1 Goal**: フェーズ1（MVP）の目標は何ですか？
+- **Phase 1 Features**: フェーズ1の機能をリストアップしてください（MVP機能を参照可）
+- **Phase 2 Goal**: フェーズ2の目標は何ですか？（未定の場合は「N/A」）
+- **Phase 2 Features**: フェーズ2の機能をリストアップしてください（未定の場合は「N/A」）
+- **Phase 3 Goal**: フェーズ3の目標は何ですか？（未定の場合は「N/A」）
+- **Phase 3 Features**: フェーズ3の機能をリストアップしてください（未定の場合は「N/A」）
 
 #### 10. Test Scenarios (For: qa-tester)
-- **Critical Test Scenarios**: List 5-10 critical test scenarios (e.g., "User registration and login flow", "Task creation and assignment")
+- **Critical Test Scenarios**: 5〜10個の重要なテストシナリオをリストアップしてください（例: 「ユーザー登録とログインフロー」「タスク作成と割り当て」）
 
 #### 11. Design Principles (For: ui-ux-designer)
-- **Core UX Principles**: List 3-5 UX principles with descriptions (e.g., "Speed: Maximum 3 clicks to complete primary action")
-- **Visual Design Principles**: List 3-5 visual design principles (e.g., "Modern and clean: Minimalist design", "Accessible: WCAG 2.1 AA compliance")
+- **Core UX Principles**: 3〜5個のUX原則を説明付きでリストアップしてください（例: 「スピード: 主要アクションは最大3クリックで完了」）
+- **Visual Design Principles**: 3〜5個のビジュアルデザイン原則をリストアップしてください（例: 「モダンでクリーン: ミニマルデザイン」「アクセシビリティ: WCAG 2.1 AA準拠」）
 
 ### Phase 2: File Updates (Automatic)
 
@@ -184,4 +184,4 @@ After updating all files, provide a summary:
 
 ---
 
-**Begin by greeting the user and explaining that you'll guide them through customizing all agent files with their project-specific information. Then start asking questions one by one.**
+**Begin by greeting the user in Japanese and explaining that you'll guide them through customizing all agent files with their project-specific information. Conduct all interactions in Japanese. Then start asking questions one by one in Japanese.**

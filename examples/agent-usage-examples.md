@@ -1,6 +1,6 @@
 # Agent Usage Examples
 
-このドキュメントでは、StudyMate開発用の各エージェントの使用例を示します。
+このドキュメントでは、各エージェントの使用例を示します。
 
 ## エージェント一覧
 
@@ -11,7 +11,7 @@
 | data-modeler | データモデリング | DB設計、ER図、マイグレーション計画 |
 | project-manager | プロジェクト管理 | タスク分解、マイルストーン設定、リスク管理 |
 | backend-dev | バックエンド開発 | API実装、認証、クラウド同期 |
-| frontend-dev | フロントエンド開発 | モバイルアプリ実装、UI実装、タイマー機能 |
+| frontend-dev | フロントエンド開発 | モバイルアプリ実装、UI実装、コア機能 |
 | qa-tester | テスト・QA | テスト戦略、テストコード、品質保証 |
 | doc-writer | ドキュメント作成 | README、API仕様書、ユーザーガイド |
 
@@ -20,19 +20,19 @@
 ### 1. tech-lead エージェントを使う
 
 ```plaintext
-Use the tech-lead agent to decide on the technology stack for StudyMate MVP
+Use the tech-lead agent to decide on the technology stack for your project
 ```
 
 または
 
 ```plaintext
-Have the tech-lead agent design the offline sync architecture
+Have the tech-lead agent design the system architecture for your application
 ```
 
 ### 2. ui-ux-designer エージェントを使う
 
 ```plaintext
-Use the ui-ux-designer agent to create wireframes for all MVP screens
+Use the ui-ux-designer agent to create wireframes for your project screens
 ```
 
 または
@@ -44,7 +44,7 @@ Have the ui-ux-designer agent design the design system with colors and typograph
 ### 3. data-modeler エージェントを使う
 
 ```plaintext
-Use the data-modeler agent to create detailed database schema for User, Subject, and StudySession entities
+Use the data-modeler agent to create detailed database schema for your entities
 ```
 
 または
@@ -56,13 +56,13 @@ Have the data-modeler agent design the migration plan for the database
 ### 4. project-manager エージェントを使う
 
 ```plaintext
-Use the project-manager agent to create a detailed MVP development plan
+Use the project-manager agent to create a detailed development plan for your project
 ```
 
 または
 
 ```plaintext
-Have the project-manager agent break down the timer feature into implementable tasks
+Have the project-manager agent break down a feature into implementable tasks
 ```
 
 ### 5. backend-dev エージェントを使う
@@ -74,31 +74,31 @@ Use the backend-dev agent to implement authentication endpoints
 または
 
 ```plaintext
-Have the backend-dev agent implement the sync API endpoints
+Have the backend-dev agent implement the core API endpoints
 ```
 
 ### 6. frontend-dev エージェントを使う
 
 ```plaintext
-Use the frontend-dev agent to implement the home screen with weekly progress
+Use the frontend-dev agent to implement the main screen for your application
 ```
 
 または
 
 ```plaintext
-Have the frontend-dev agent implement the timer functionality with background support
+Have the frontend-dev agent implement core functionality for your features
 ```
 
 ### 7. qa-tester エージェントを使う
 
 ```plaintext
-Use the qa-tester agent to create test cases for the 15-second recording constraint
+Use the qa-tester agent to create test cases for critical user flows
 ```
 
 または
 
 ```plaintext
-Have the qa-tester agent write E2E tests for the timer and recording flow
+Have the qa-tester agent write E2E tests for key features and workflows
 ```
 
 ### 8. doc-writer エージェントを使う
@@ -122,8 +122,8 @@ Have the doc-writer agent write the API documentation based on the implemented e
 ```plaintext
 Use the tech-lead agent to:
 1. Read all reference documents
-2. Evaluate React Native vs Flutter for mobile development
-3. Evaluate Supabase vs Firebase for backend
+2. Evaluate technology options for your platform
+3. Compare different backend and frontend solutions
 4. Create tech-stack-decision.md with full analysis
 ```
 
@@ -131,10 +131,10 @@ Use the tech-lead agent to:
 
 ```plaintext
 Use the ui-ux-designer agent to:
-1. Create wireframes for all 5 MVP screens
+1. Create wireframes for all key screens
 2. Design the screen transition flow
 3. Define the design system (colors, fonts, components)
-4. Validate that recording can be completed in 15 seconds
+4. Validate UX optimization and user flow efficiency
 ```
 
 #### ステップ3: データモデリング
@@ -142,7 +142,7 @@ Use the ui-ux-designer agent to:
 ```plaintext
 Use the data-modeler agent to:
 1. Review the tech-lead's database overview
-2. Create detailed entity definitions for User, Subject, and StudySession
+2. Create detailed entity definitions for your data models
 3. Design the ER diagram
 4. Create migration scripts
 ```
@@ -152,12 +152,12 @@ Use the data-modeler agent to:
 ```plaintext
 Use the project-manager agent to:
 1. Review all design documents
-2. Break down MVP features into tasks
+2. Break down project features into tasks
 3. Create a detailed development plan with milestones
 4. Identify risks and dependencies
 ```
 
-### Phase 1: MVP開発
+### Phase 1: 開発
 
 #### バックエンド実装
 
@@ -165,21 +165,21 @@ Use the project-manager agent to:
 Use the backend-dev agent to:
 1. Set up the project structure
 2. Implement authentication endpoints (register, login, OAuth)
-3. Implement Subject CRUD endpoints
-4. Implement StudySession CRUD endpoints
-5. Implement sync endpoints
+3. Implement entity CRUD endpoints
+4. Implement core business logic endpoints
+5. Implement data sync endpoints
 ```
 
 #### フロントエンド実装
 
 ```plaintext
 Use the frontend-dev agent to:
-1. Set up the mobile project
+1. Set up the project structure
 2. Implement the navigation structure
-3. Implement the home screen
-4. Implement the recording screen with timer
+3. Implement the main screens
+4. Implement core feature screens and functionality
 5. Implement offline support and local storage
-6. Implement cloud sync logic
+6. Implement data sync logic
 ```
 
 #### テスト実装
@@ -189,8 +189,8 @@ Use the qa-tester agent to:
 1. Create a comprehensive test strategy
 2. Write unit tests for business logic
 3. Write integration tests for all API endpoints
-4. Write E2E tests for the recording flow
-5. Validate the 15-second recording constraint
+4. Write E2E tests for critical user flows
+5. Validate performance requirements and constraints
 ```
 
 #### ドキュメント作成
@@ -281,21 +281,21 @@ Use the ui-ux-designer agent to design some screens
 ✅ 良い例:
 ```plaintext
 Use the ui-ux-designer agent to create:
-1. Wireframes for home, recording, and list screens
+1. Wireframes for main application screens
 2. Detailed screen specifications with component states
 3. Screen transition flow diagram
-4. Validation that recording completes in 15 seconds
+4. Validation of UX flows and user interaction patterns
 ```
 
 ### 4. 制約や要件を明示
 
 ```plaintext
-Use the frontend-dev agent to implement the timer feature with these requirements:
-- Must be accurate to ±1 second per hour
-- Must continue running in the background
-- Must survive app switches and phone calls
-- Must auto-save when stopped
-- Must update every second
+Use the frontend-dev agent to implement a core feature with these requirements:
+- Must meet specified performance criteria
+- Must handle background operations correctly
+- Must persist state across app lifecycle events
+- Must auto-save data when appropriate
+- Must update UI in real-time
 ```
 
 ## トラブルシューティング
