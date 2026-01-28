@@ -1,6 +1,8 @@
-# StudyMate Development Agents
+# Development Agents - Quick Reference
 
 カスタムエージェント一覧とクイックリファレンス
+
+> **Note**: All agents are now project-agnostic templates (v3.0.0). You must customize them with your project-specific information before use. See the "プロジェクトのカスタマイズ" section below.
 
 ## エージェント一覧
 
@@ -20,7 +22,7 @@
 
 **使用例**:
 ```
-Use the tech-lead agent to decide on the technology stack for StudyMate MVP
+Use the tech-lead agent to decide on the technology stack for your project
 ```
 
 ---
@@ -34,13 +36,13 @@ Use the tech-lead agent to decide on the technology stack for StudyMate MVP
 - 画面遷移フロー設計
 - 画面詳細仕様書作成
 - デザインシステム定義（色、フォント、コンポーネント）
-- 15秒記録完了のUX検証
+- UX最適化と検証
 
 **主な成果物**: `wireframes.md`, `screen-transition-flow.md`, `screen-specifications/`, `design-system.md`
 
 **使用例**:
 ```
-Use the ui-ux-designer agent to create wireframes for all MVP screens
+Use the ui-ux-designer agent to create wireframes for your project screens
 ```
 
 ---
@@ -50,7 +52,7 @@ Use the ui-ux-designer agent to create wireframes for all MVP screens
 
 データ構造の詳細設計の責任者
 
-- エンティティ詳細定義（User, Subject, StudySession）
+- エンティティ詳細定義
 - リレーションシップ設計
 - インデックス設計
 - マイグレーション計画
@@ -60,7 +62,7 @@ Use the ui-ux-designer agent to create wireframes for all MVP screens
 
 **使用例**:
 ```
-Use the data-modeler agent to create detailed database schema
+Use the data-modeler agent to create detailed database schema for your entities
 ```
 
 ---
@@ -80,7 +82,7 @@ Use the data-modeler agent to create detailed database schema
 
 **使用例**:
 ```
-Use the project-manager agent to create a detailed MVP development plan
+Use the project-manager agent to create a detailed development plan for your project
 ```
 
 ---
@@ -102,7 +104,7 @@ Use the project-manager agent to create a detailed MVP development plan
 
 **使用例**:
 ```
-Use the backend-dev agent to implement authentication endpoints
+Use the backend-dev agent to implement authentication endpoints for your API
 ```
 
 ---
@@ -115,15 +117,15 @@ Use the backend-dev agent to implement authentication endpoints
 - モバイルプロジェクトセットアップ
 - 画面コンポーネント実装
 - 状態管理実装
-- タイマー機能実装（バックグラウンド対応）
+- コア機能実装
 - オフライン対応実装
-- クラウド同期実装（クライアント側）
+- データ同期実装（クライアント側）
 
 **主な成果物**: モバイルアプリソースコード, `component-design.md`, `state-management-design.md`
 
 **使用例**:
 ```
-Use the frontend-dev agent to implement the home screen with weekly progress
+Use the frontend-dev agent to implement main screens for your application
 ```
 
 ---
@@ -137,14 +139,14 @@ Use the frontend-dev agent to implement the home screen with weekly progress
 - ユニットテスト作成
 - 統合テスト作成
 - E2Eテスト作成
-- パフォーマンステスト（15秒制約検証、起動時間計測）
+- パフォーマンステスト（応答時間、起動時間、リソース使用量）
 - セキュリティチェック
 
 **主な成果物**: テストコード, `test-strategy.md`, `test-coverage-report.md`, `performance-test-results.md`
 
 **使用例**:
 ```
-Use the qa-tester agent to write E2E tests for the recording flow
+Use the qa-tester agent to write E2E tests for critical user flows
 ```
 
 ---
@@ -165,7 +167,7 @@ Use the qa-tester agent to write E2E tests for the recording flow
 
 **使用例**:
 ```
-Use the doc-writer agent to create the project README
+Use the doc-writer agent to create project README and documentation
 ```
 
 ---
@@ -223,44 +225,87 @@ graph TD
 | 認証実装 | backend-dev |
 | API実装 | backend-dev |
 | 画面実装 | frontend-dev |
-| タイマー実装 | frontend-dev |
+| コア機能実装 | frontend-dev |
 | テスト戦略 | qa-tester |
 | テストコード作成 | qa-tester |
 | README作成 | doc-writer |
 | API仕様書作成 | doc-writer |
 
-## プロジェクト固有の設定
+## プロジェクトのカスタマイズ
 
-### 参照ドキュメント
+### 重要: エージェントは汎用テンプレートです
 
-全エージェントは以下のドキュメントを参照します：
+全エージェント(v3.0.0)はプロジェクト非依存のテンプレートです。**使用前に必ずプロジェクト固有の情報を追記してください。**
 
-- **要件定義**: `/Users/tomohirotakahashi/Documents/Obsidian Vault/studymate/要件定義.md`
-- **エージェント作成指示書**: `/Users/tomohirotakahashi/Documents/Obsidian Vault/studymate/エージェント作成指示書.md`
-- **プロダクトコンセプト**: `/Users/tomohirotakahashi/Documents/Obsidian Vault/Zettelkasten/PermanentNote/studymate_notes/学習記録アプリ プロダクトコンセプト整理（0→1）.md`
-- **詳細要件**: `/Users/tomohirotakahashi/Documents/Obsidian Vault/Zettelkasten/PermanentNote/studymate_notes/学習記録アプリ 要件定義書.md`
+### カスタマイズ方法
 
-### コアコンセプト
+#### オプション1: 対話式カスタマイズ (推奨)
 
-全エージェントが従うべきプロダクト哲学：
+`/customize_agents` コマンドを使用すると、対話形式で質問に答えるだけで全エージェントを自動カスタマイズできます：
 
-- **"今日もやった自分"を静かに肯定**
-- **サボった日を責めない**
-- **明日も机に戻りやすくする**
-- **継続のしやすさ > 情報の正確さ**
-- **気持ちの軽さ > 記録の網羅性**
+```
+/customize_agents
+```
 
-### 技術的制約
+このコマンドは以下を自動的に設定します：
+- プロジェクト概要（名前、説明、ターゲット、プラットフォーム、MVP機能）
+- 参照ドキュメントパス
+- 技術的制約と優先事項
+- コア機能とエンティティ
+- 開発フェーズ計画
+- テストシナリオ
+- デザイン原則
 
-全エージェントが守るべき非機能要件：
+#### オプション2: 手動カスタマイズ
 
-- 記録完了まで最大15秒
-- アプリ起動3秒以内
-- オフライン対応必須
-- 60fpsのスムーズなアニメーション
-- クラウド同期必須
+各エージェントファイル(`.claude/agents/*.md`)の `<!-- ✏️ EDIT THIS SECTION -->` マーカーで示された箇所を手動で編集：
+
+##### 全エージェント共通で必要な情報:
+- **Project Overview**: プロジェクト名、概要、ターゲット、プラットフォーム、MVP機能
+
+##### エージェント別の追加情報:
+
+| エージェント | 追加カスタマイズが必要な項目 |
+|------------|--------------------------|
+| tech-lead | 参照ドキュメント、非機能要件、技術優先事項、プロダクト哲学 |
+| ui-ux-designer | 参照ドキュメント、デザイン原則、必要画面一覧 |
+| data-modeler | 参照ドキュメント、主要エンティティと属性 |
+| project-manager | 参照ドキュメント、開発フェーズ計画 |
+| backend-dev | 主要APIエンドポイント、パフォーマンス目標 |
+| frontend-dev | 画面一覧と機能、コア機能、パフォーマンス目標 |
+| qa-tester | 参照ドキュメント、重要テストシナリオ |
+| devops-engineer | （Project Overviewのみ） |
+| doc-writer | （Project Overviewのみ） |
+
+### カスタマイズ例
+
+#### 参照ドキュメント
+```markdown
+- **Requirements**: `./docs/requirements.md`
+- **Product Concept**: `./docs/product-concept.md`
+- **API Specification**: `./docs/api-spec.md`
+```
+
+#### 技術的制約
+```markdown
+- **Page load time**: Maximum 2 seconds
+- **API response time**: <200ms (p95)
+- **Concurrent users**: Support 1000+ concurrent users
+- **Uptime**: 99.9% availability
+```
+
+#### プロダクト哲学
+```markdown
+- **User experience > Feature richness**
+- **Performance > Visual complexity**
+- **Security > Convenience**
+```
+
+詳細は `agents/README.md` および各エージェントファイル内の例を参照してください。
 
 ## さらに詳しく
 
 - [エージェント使用例](examples/agent-usage-examples.md)
-- [セットアップガイド](README.md)
+- [セットアップガイド](QUICKSTART.md)
+- [エージェント詳細](agents/README.md)
+- [カスタマイズコマンド](commands/customize_agents.md)
