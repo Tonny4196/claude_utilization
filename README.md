@@ -137,6 +137,24 @@ bash ~/workspace/claude_utilization/setup.sh
 
 ### ステップ2: プロジェクト固有情報を追記 ⚠️ 重要
 
+#### 方法1: 自動カスタマイズ（推奨）
+
+Claude Codeの `/customize_agents` コマンドを使用して、対話形式で全エージェントファイルを自動的にカスタマイズできます：
+
+```bash
+cd /path/to/your/project
+claude
+```
+
+Claude Codeセッション内で：
+```
+/customize_agents
+```
+
+コマンドが対話形式でプロジェクト情報を質問し、全エージェントファイルの編集セクションに自動的に追記します。
+
+#### 方法2: 手動編集
+
 コピーしたエージェントファイル（`.claude/agents/*.md`）を開き、`<!-- ✏️ EDIT THIS SECTION -->` マーカーがある箇所にプロジェクト固有の情報を追記してください。
 
 **必須編集項目:**

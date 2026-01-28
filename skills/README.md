@@ -216,13 +216,21 @@ Use the deploy-to-staging skill to deploy the latest build
 
 ### 推奨される最初のスキル
 
-StudyMateプロジェクト用に以下のスキルを作成することを推奨：
+プロジェクトの種類に応じて、以下のようなスキルを作成することを推奨：
 
+**モバイルアプリプロジェクト:**
 1. **run-mobile-tests**: モバイルアプリのテスト実行
 2. **build-ios**: iOSアプリのビルド
 3. **build-android**: Androidアプリのビルド
 4. **deploy-backend**: バックエンドのデプロイ
 5. **run-migration**: データベースマイグレーション
+
+**Webアプリプロジェクト:**
+1. **run-unit-tests**: ユニットテストの実行
+2. **build-production**: 本番ビルドの作成
+3. **deploy-frontend**: フロントエンドのデプロイ
+4. **deploy-backend**: バックエンドのデプロイ
+5. **run-e2e-tests**: E2Eテストの実行
 
 ## 参考リンク
 
