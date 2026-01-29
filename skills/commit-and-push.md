@@ -1,20 +1,21 @@
 ---
 name: commit-and-push
-description: 作業完了後にGitHubにcommit/pushを行う。Protectedブランチで作業中の場合は自動的に作業ブランチを作成
+description: 作業完了後にGitHubにcommit/pushを行い、自動的にPRを作成。Protectedブランチで作業中の場合は自動的に作業ブランチを作成
 tools: Bash, Read
 model: sonnet
 ---
 
-# Commit and Push to GitHub
+# Commit, Push and Create PR
 
-作業が完了した際に、GitHubへのcommitとpushを自動的に行うスキル。
-Protected ブランチ（develop, main, production）で作業している場合は、自動的に作業ブランチを作成してからcommit/pushを実行します。
+作業が完了した際に、GitHubへのcommitとpushを自動的に行い、プルリクエストを作成するスキル。
+Protected ブランチ（develop, main, production）で作業している場合は、自動的に作業ブランチを作成してからcommit/push/PR作成を実行します。
 
 ## 目的
 
-- 作業完了後のcommit/pushプロセスを自動化
+- 作業完了後のcommit/push/PR作成プロセスを自動化
 - Protected ブランチでの直接作業を防止
 - 適切なブランチ命名規則に従った作業ブランチの自動作成
+- 変更内容を解析した詳細なPR説明文の自動生成
 
 ## Protected ブランチ
 
@@ -87,11 +88,104 @@ git push origin <current-branch>
 git push -u origin <current-branch>
 ```
 
+### 7. ベースブランチの特定
+
+作業ブランチが作成された元のProtectedブランチを特定します。
+
+```bash
+# reflogから作業ブランチ作成時の元ブランチを取得
+git reflog show HEAD | grep "checkout: moving from" | head -1
+
+# または merge-base で共通祖先から推定
+git merge-base HEAD main
+git merge-base HEAD develop
+git merge-base HEAD production
+```
+
+**フォールバック順序:**
+1. git reflog から取得
+2. git merge-base で最も新しい共通祖先を持つブランチ
+3. リポジトリのデフォルトブランチ（`gh repo view --json defaultBranchRef`）
+4. ハードコードされた "main"
+
+### 8. PR説明文の自動生成
+
+git diffとgit logから変更内容を解析し、詳細なPR説明文を生成します。
+
+```bash
+# コミット履歴の取得
+git log ${BASE_BRANCH}..HEAD --format="%s%n%n%b"
+
+# 変更ファイルの統計
+git diff ${BASE_BRANCH}..HEAD --stat
+
+# 変更ファイルの一覧
+git diff ${BASE_BRANCH}..HEAD --name-status
+```
+
+**PR説明文のフォーマット:**
+
+```markdown
+## Summary
+
+[変更の要約 - コミットメッセージから生成]
+
+## Changes
+
+### [カテゴリ1: Documentation/Features/etc.]
+- Added/Updated/Deleted [ファイル名]: [説明]
+- ...
+
+### [カテゴリ2]
+- ...
+
+## Testing
+
+- [テストファイルの変更があれば記載]
+- [なければ manual testing performed と記載]
+
+## Review Checklist
+
+- [ ] Code follows project conventions
+- [ ] All tests pass
+- [ ] Documentation updated
+- [ ] No breaking changes
+- [ ] Security considerations reviewed
+- [ ] Performance impact assessed
+```
+
+**セクション別生成ロジック:**
+
+- **Summary**: 最新のコミットメッセージ、または複数コミットの統合要約
+- **Changes**: ファイルタイプごとにグループ化（Documentation, Features, Tests, Configuration）
+- **Testing**: テスト関連ファイル（test/, *.test.*, *.spec.*）の変更を検出
+- **Review Checklist**: 固定テンプレート + 動的追加（ドキュメント変更があれば自動チェック）
+
+### 9. プルリクエストの作成
+
+```bash
+# PR作成
+gh pr create \
+  --title "${COMMIT_TITLE}" \
+  --body "${PR_DESCRIPTION}" \
+  --base "${BASE_BRANCH}"
+
+# PR URL の表示
+echo "Pull request created: ${PR_URL}"
+```
+
+**作成されるPRの特徴:**
+- タイトル: 最新のコミットメッセージの件名
+- 説明: 自動生成された詳細な説明文
+- ベース: 作業を開始した元のブランチ
+
 ## 成果物
 
 - GitHubリポジトリに反映されたコミット
 - 必要に応じて作成された作業ブランチ
 - リモートブランチとの同期
+- 自動生成されたプルリクエスト
+- 詳細な変更内容を含むPR説明文
 
 ## エラーハンドリング
 
@@ -125,12 +219,60 @@ fatal: No configured push destination
 
 → リモートリポジトリの設定をユーザーに依頼
 
+### GitHub CLIが未インストール
+
+```
+gh: command not found
+```
+
+→ GitHub CLI のインストール方法を案内
+- macOS: `brew install gh`
+- その他: https://cli.github.com/
+
+### GitHub CLI認証エラー
+
+```
+error: authentication required
+```
+
+→ `gh auth login` の実行を案内
+- 認証状態の確認: `gh auth status`
+
+### PR既存エラー
+
+既に同じブランチのPRが存在する場合:
+- 既存PRのURLを表示
+- PR説明文の更新を提案（`gh pr edit`）
+- またはそのまま処理を完了
+
+### ベースブランチ検出失敗
+
+自動検出できない場合:
+- デフォルトブランチ（main）を使用
+- 検出結果をユーザーに表示
+- `--base` オプションで明示的に指定可能
+
+### PR作成失敗
+
+```
+error: pull request create failed
+```
+
+考えられる原因:
+- ベースブランチとの差分がない
+- ブランチ保護ルールの制約
+- ネットワークエラー
+
+→ 手動PR作成を案内、または再試行を提案
+
 ## 前提条件
 
 - Gitリポジトリが初期化されていること
 - リモートリポジトリ（origin）が設定されていること
 - 認証情報が設定されていること（SSH key または credential helper）
 - コミットするべき変更が存在すること
+- **GitHub CLI (gh) がインストールされていること**
+- **GitHub CLI で認証が完了していること (`gh auth login`)**
 
 ## セーフガード
 
@@ -174,11 +316,21 @@ mainブランチで作業していますが、この変更をcommitしてpushし
     ↓                          ↓
 [新ブランチに切り替え]     [リモートにプッシュ]
     ↓                          ↓
-[変更をステージング]       [完了]
+[変更をステージング]       [ベースブランチ特定]
+    ↓                          ↓
+[コミット作成]             [git diff/log解析]
+    ↓                          ↓
+[リモートにプッシュ]       [PR説明文生成]
+    ↓                          ↓
+[ベースブランチ特定]       [gh pr create実行]
+    ↓                          ↓
+[git diff/log解析]         [PR URL表示]
+    ↓                          ↓
+[PR説明文生成]             [完了]
     ↓
-[コミット作成]
+[gh pr create実行]
     ↓
-[リモートにプッシュ]
+[PR URL表示]
     ↓
 [完了]
 ```
@@ -191,6 +343,9 @@ mainブランチで作業していますが、この変更をcommitしてpushし
 - **branch-name**: 作業ブランチ名（Protected ブランチの場合）
 - **force-push**: 強制プッシュ（注意が必要）
 - **skip-branch-creation**: Protected ブランチでもブランチ作成をスキップ（非推奨）
+- **base-branch**: PRのベースブランチを明示的に指定
+- **skip-pr**: PR作成をスキップ
+- **pr-draft**: ドラフトPRとして作成
 
 ## 注意事項
 
@@ -206,8 +361,19 @@ mainブランチで作業していますが、この変更をcommitしてpushし
 4. **認証エラー**
    - SSH keyまたはPersonal Access Tokenが正しく設定されていることを確認してください
 
+5. **GitHub CLI認証**
+   - 初回使用時は `gh auth login` を実行してGitHubアカウントと連携してください
+   - 認証状態は `gh auth status` で確認できます
+
+6. **PR説明文の品質**
+   - 自動生成されたPR説明文は、必要に応じて手動で編集できます
+   - `gh pr edit [PR番号] --body "新しい説明"` で後から更新可能
+
+7. **ベースブランチの確認**
+   - 自動検出されたベースブランチが正しいか確認してください
+   - 誤っている場合は `--base` オプションで明示的に指定できます
+
 ## 関連スキル
 
-- **create-pull-request**: プルリクエストの作成（今後実装予定）
 - **sync-with-upstream**: アップストリームとの同期（今後実装予定）
 - **cherry-pick-commits**: コミットのcherry-pick（今後実装予定）
