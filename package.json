@@ -1,0 +1,51 @@
+{
+  "name": "claude-utilization-setup",
+  "version": "1.0.0",
+  "description": "Claude Code設定テンプレートを任意のプロジェクトに簡単にセットアップするCLIツール",
+  "main": "bin/cli.js",
+  "bin": {
+    "claude-utilization-setup": "./bin/cli.js"
+  },
+  "scripts": {
+    "test": "node bin/cli.js --dry-run"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "ai",
+    "agent",
+    "setup",
+    "cli",
+    "template"
+  ],
+  "author": "Tomohiro Takahashi",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Tonny4196/claude_utilization.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Tonny4196/claude_utilization/issues"
+  },
+  "homepage": "https://github.com/Tonny4196/claude_utilization#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "node-fetch": "^2.7.0",
+    "adm-zip": "^0.5.10",
+    "chalk": "^4.1.2"
+  },
+  "files": [
+    "bin/",
+    "agents/",
+    "skills/",
+    "commands/",
+    "rules/",
+    "hooks/",
+    "mcp-configs/",
+    "plugins/",
+    "examples/",
+    "README.md"
+  ]
+}
