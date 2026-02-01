@@ -61,6 +61,31 @@ cp -r ~/workspace/claude_utilization/agents/* .claude/agents/
 cp -r ~/workspace/claude_utilization/commands/* .claude/commands/
 ```
 
+### GitHub CLI セットアップ（commit-and-push スキル使用時）
+
+commit-and-push スキルでPR自動作成機能を使用する場合、GitHub CLIのインストールと認証が必要です。
+
+```bash
+# GitHub CLIのインストール（未インストールの場合）
+brew install gh  # macOS
+
+# または他のOSの場合
+# https://cli.github.com/ を参照
+
+# GitHubアカウントとの連携
+gh auth login
+
+# 認証状態の確認
+gh auth status
+```
+
+**初回認証手順:**
+1. `gh auth login` を実行
+2. GitHub.com を選択
+3. HTTPS または SSH を選択（推奨: HTTPS）
+4. 認証方法を選択（ブラウザ推奨）
+5. ブラウザで認証を完了
+
 ## 各ディレクトリの説明
 
 ### agents/
