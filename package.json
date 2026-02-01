@@ -2,6 +2,7 @@
   "name": "claude-utilization-setup",
   "version": "1.0.0",
   "description": "Claude Code設定テンプレートを任意のプロジェクトに簡単にセットアップするCLIツール",
+  "type": "module",
   "main": "bin/cli.js",
   "bin": {
     "claude-utilization-setup": "./bin/cli.js"
@@ -32,9 +33,7 @@
     "node": ">=14.0.0"
   },
   "dependencies": {
-    "node-fetch": "^2.7.0",
-    "adm-zip": "^0.5.10",
-    "chalk": "^4.1.2"
+    "unzipper": "^0.10.14"
   },
   "files": [
     "bin/",
