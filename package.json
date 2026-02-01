@@ -45,7 +45,6 @@
     "hooks/",
     "mcp-configs/",
     "plugins/",
-    "examples/",
     "README.md"
   ]
 }
