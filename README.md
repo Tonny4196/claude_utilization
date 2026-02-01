@@ -38,18 +38,44 @@ claude_utilization/
 
 ## セットアップ
 
-### プロジェクトへの適用
+### 方法1: npxで実行（推奨）
 
 プロジェクトルートで以下を実行：
+
+```bash
+npx claude-utilization-setup
+```
+
+これにより、GitHubから最新の設定テンプレートがダウンロードされ、`.claude/`ディレクトリに配置されます。
+
+#### オプション
+
+```bash
+# 特定のブランチから取得
+npx claude-utilization-setup --url https://github.com/Tonny4196/claude_utilization/archive/refs/heads/main.zip
+
+# カスタムディレクトリに配置
+npx claude-utilization-setup --target .my-claude
+
+# dry-run（実際にコピーせず、何がコピーされるか確認）
+npx claude-utilization-setup --dry-run
+```
+
+### 方法2: グローバルインストール
+
+```bash
+npm install -g claude-utilization-setup
+claude-utilization-setup
+```
+
+### 方法3: 手動セットアップ（レガシー）
+
+ローカルにクローンしている場合：
 
 ```bash
 # セットアップスクリプトを実行
 bash ~/workspace/claude_utilization/setup.sh
 ```
-
-これにより、`claude_utilization/`の内容が`.claude/`ディレクトリにコピーされます。
-
-### 手動セットアップ
 
 個別のコンポーネントのみ使用する場合：
 
@@ -200,6 +226,64 @@ Claude Codeセッション内で：
 Use the tech-lead agent to design the system architecture for this project
 Have the ui-ux-designer agent create wireframes based on our requirements
 ```
+
+## npm公開手順（メンテナー向け）
+
+このパッケージをnpmに公開・更新する手順です。
+
+### 初回公開
+
+1. npmアカウントでログイン
+   ```bash
+   npm login
+   ```
+
+2. パッケージ名の重複確認
+   ```bash
+   npm search claude-utilization-setup
+   ```
+
+3. 公開前チェック
+   ```bash
+   npm publish --dry-run
+   ```
+
+4. パッケージ公開
+   ```bash
+   npm publish
+   ```
+
+5. 公開確認
+   ```bash
+   npm info claude-utilization-setup
+   ```
+
+### 更新公開
+
+1. バージョンアップ
+   ```bash
+   npm version patch  # 1.0.0 → 1.0.1（バグフィックス）
+   npm version minor  # 1.0.0 → 1.1.0（新機能追加）
+   npm version major  # 1.0.0 → 2.0.0（破壊的変更）
+   ```
+
+2. 公開
+   ```bash
+   npm publish
+   ```
+
+3. Gitにプッシュ
+   ```bash
+   git push origin main --tags
+   ```
+
+### トラブルシューティング
+
+- **パッケージ名が使用済み**: package.jsonのnameを変更（例: `@username/claude-utilization-setup`）
+- **権限エラー**: `npm login`でログイン状態を確認
+- **2FA必要**: npmのワンタイムパスワードを入力
+
+---
 
 ## ライセンス
 
