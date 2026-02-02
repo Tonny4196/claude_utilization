@@ -27,3 +27,4 @@ yarn-error.log*
 
 # プロジェクト固有の除外ファイル
 temp/
+.claude/
